@@ -1,6 +1,7 @@
 import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { Api } from '../api/api';
 
@@ -27,15 +28,20 @@ import { Api } from '../api/api';
 export class User {
   _user: any;
 
-  constructor(public api: Api) { }
+  constructor(public api: Api, private afAuth: AngularFireAuth) { }
 
   /**
    * Send a POST request to our login endpoint with the data
    * the user entered on the form.
    */
-  login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
-
+   login(accountInfo: any) {
+      this.afAuth.auth.signInWithEmailAndPassword(accountInfo.email, accountInfo.password)
+     .catch(err =>{
+      console.error('ERROR', err);
+    })
+    
+    /*let seq = this.api.post('login', accountInfo).share();
+    //let seq = this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(accountInfo.email, accountInfo.password);
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
       if (res.status == 'success') {
@@ -46,9 +52,8 @@ export class User {
       console.error('ERROR', err);
     });
 
-    return seq;
+    return seq;*/
   }
-
   /**
    * Send a POST request to our signup endpoint with the data
    * the user entered on the form.

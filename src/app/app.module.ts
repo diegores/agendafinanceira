@@ -15,6 +15,10 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { FIREBASE_CREDENTIALS } from '../db/persistence';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function createTranslateLoader(http: HttpClient) {
@@ -43,6 +47,8 @@ export function provideSettings(storage: Storage) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
+    AngularFireAuthModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
