@@ -34,25 +34,29 @@ export class User {
    * Send a POST request to our login endpoint with the data
    * the user entered on the form.
    */
-   login(accountInfo: any) {
-      this.afAuth.auth.signInWithEmailAndPassword(accountInfo.email, accountInfo.password)
+  login(accountInfo: any) {
+     return  this.afAuth.auth.signInWithEmailAndPassword(accountInfo.email, accountInfo.password)
      .catch(err =>{
       console.error('ERROR', err);
     })
-    
-    /*let seq = this.api.post('login', accountInfo).share();
-    //let seq = this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(accountInfo.email, accountInfo.password);
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
 
-    return seq;*/
+    
+    
+    /*login(accountInfo: any) {
+      let seq = this.api.post('login', accountInfo).share();
+  
+      seq.subscribe((res: any) => {
+        // If the API returned a successful response, mark the user as logged in
+        if (res.status == 'success') {
+          this._loggedIn(res);
+        } else {
+        }
+      }, err => {
+        console.error('ERROR', err);
+      });
+  
+      return seq;
+    }*/
   }
   /**
    * Send a POST request to our signup endpoint with the data
