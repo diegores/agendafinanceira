@@ -35,17 +35,9 @@ export class User {
    * the user entered on the form.
    */
   login(accountInfo: any) {
-     return  this.afAuth.auth.signInWithEmailAndPassword(accountInfo.email, accountInfo.password)
-     .catch(err =>{
-      console.error('ERROR', err);
-    })
-
-    
-    
-    /*login(accountInfo: any) {
-      let seq = this.api.post('login', accountInfo).share();
-  
-      seq.subscribe((res: any) => {
+     //let seq = this.api.post('login', accountInfo).share();
+     let seq = this.afAuth.auth.signInWithEmailAndPassword(accountInfo.email, accountInfo.password);
+      seq.then((res: any) => {
         // If the API returned a successful response, mark the user as logged in
         if (res.status == 'success') {
           this._loggedIn(res);
@@ -56,8 +48,8 @@ export class User {
       });
   
       return seq;
-    }*/
-  }
+    }
+  
   /**
    * Send a POST request to our signup endpoint with the data
    * the user entered on the form.

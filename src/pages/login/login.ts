@@ -2,6 +2,7 @@ import { Account } from './../../models/account';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MainPage } from './../pages';
 import { User } from '../../providers/providers';
@@ -16,6 +17,10 @@ export class LoginPage {
 
   account = {} as Account;
 
+  isReadyToSigin: boolean;
+
+  form: FormGroup;
+
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
@@ -27,11 +32,21 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    public formBuilder: FormBuilder) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
+    
+    this.form = formBuilder.group({
+        email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+    this.form.valueChanges.subscribe((v) => {
+      this.isReadyToSigin = this.form.valid;
+    });
   }
 
   // Attempt to login in through our User service

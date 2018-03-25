@@ -55,7 +55,11 @@
   "ITEM_CREATE_CHOOSE_IMAGE": "Adicionar Imagem",
 
   "ITEM_NAME_PLACEHOLDER": "Nome",
-  "ITEM_ABOUT_PLACEHOLDER": "Sobre",
+  "ITEM_ABOUT_PLACEHOLDER": "Descrição",
+  "ITEM_TELEPHONE_PLACEHOLDER": "Telefone",
+  "ITEM_ADDRESS_PLACEHOLDER": "Enredeço",
+  "ITEM_AMOUNT_PLACEHOLDER": "Valor Total",
+  "ITEM_VALUE_REMOVED_PLACEHOLDER": "Valor Quitado",
 
   "DONE_BUTTON": "Pronto",
   "CANCEL_BUTTON": "Cancelar",
