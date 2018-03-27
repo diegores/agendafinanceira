@@ -20,5 +20,11 @@ export class Item {
 }
 
 export interface Item {
-  [prop: string]: any;
+  nome: string,
+  telefone: string,
+  endereco: string,
+  valorTotal: string,
+  valorQuitado: string,
+  descricao: string;
+  //[prop: string]: any;
 }

@@ -58,8 +58,8 @@
   "ITEM_ABOUT_PLACEHOLDER": "Descrição",
   "ITEM_TELEPHONE_PLACEHOLDER": "Telefone",
   "ITEM_ADDRESS_PLACEHOLDER": "Enredeço",
-  "ITEM_AMOUNT_PLACEHOLDER": "Valor Total",
-  "ITEM_VALUE_REMOVED_PLACEHOLDER": "Valor Quitado",
+  "ITEM_AMOUNT_PLACEHOLDER": "Valor Total (R$)",
+  "ITEM_VALUE_REMOVED_PLACEHOLDER": "Valor Quitado (R$)",
 
   "DONE_BUTTON": "Pronto",
   "CANCEL_BUTTON": "Cancelar",

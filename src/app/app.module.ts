@@ -16,6 +16,7 @@ import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CREDENTIALS } from '../db/persistence';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -45,6 +46,7 @@ export function provideSettings(storage: Storage) {
     MyApp
   ],
   imports: [
+    AngularFireDatabaseModule,
     BrowserModule,
     HttpClientModule,
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),

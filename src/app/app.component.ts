@@ -4,6 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 
+import { LoginPage } from './../pages/login/login';
+
 import { FirstRunPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
 
@@ -27,7 +29,7 @@ import { Settings } from '../providers/providers';
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = FirstRunPage;
+  rootPage = 'LoginPage';
 
   @ViewChild(Nav) nav: Nav;
 

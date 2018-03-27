@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { Item } from '../../models/item';
 
+import { AngularFireDatabase } from 'angularfire2/database';
+import { ToastController } from 'ionic-angular';
+
 @Injectable()
 export class Items {
   items: Item[] = [];
@@ -13,7 +16,7 @@ export class Items {
   };
 
 
-  constructor() {
+  constructor(public afd: AngularFireDatabase, public toastCtrl: ToastController) {
     let items = [
       {
         "name": "Burt Bear",
@@ -75,11 +78,36 @@ export class Items {
     });
   }
 
-  add(item: Item) {
+  add(item: any) {
+    let seq = this.afd.database.ref('items/').set({
+      nome: item.nome,
+      telefone: item.telefone,
+      endereco: item.endereco,
+      valorTotal: item.valorTotal,
+      valorQuitado: item.valorQuitado,
+      descricao: item.descricao
+    })
+  .then(() => {
+    this.presentToast("Cadastrado com Sucesso!");
     this.items.push(item);
+  })
+    .catch((err) => {
+        this.presentToast(err.message);
+      });
+  return seq;
+    //this.items.push(item);*/
   }
 
   delete(item: Item) {
     this.items.splice(this.items.indexOf(item), 1);
+  }
+
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 }
