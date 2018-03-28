@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+
+/*import { Injectable } from '@angular/core';
 
 import { Item } from '../../models/item';
 
@@ -78,8 +79,10 @@ export class Items {
     });
   }
 
-  add(item: any) {
-    let seq = this.afd.database.ref('items/').set({
+  /*add(item: Item) {
+    
+    //console.log(item);
+    let seq = this.afd.database.ref("items/"+ "item " + "4" ).set({
       nome: item.nome,
       telefone: item.telefone,
       endereco: item.endereco,
@@ -89,14 +92,15 @@ export class Items {
     })
   .then(() => {
     this.presentToast("Cadastrado com Sucesso!");
-    this.items.push(item);
+    //this.items.push(item);
+    
   })
     .catch((err) => {
         this.presentToast(err.message);
       });
   return seq;
-    //this.items.push(item);*/
-  }
+    //this.items.push(item);
+//}
 
   delete(item: Item) {
     this.items.splice(this.items.indexOf(item), 1);
@@ -110,4 +114,4 @@ export class Items {
     });
     toast.present();
   }
-}
+}*/

@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController, ToastController } from 'ionic-angular';
 
-import { Items } from '../../providers/providers';
-import { Item } from '../../models/item';
+
+import { Item } from './../../models/item';
+import { Items } from '../../providers/items/items';
 
 
 @IonicPage()
@@ -18,6 +19,7 @@ export class ItemCreatePage {
   isReadyToSave: boolean;
 
   item = {} as Item;
+  
   
 
   form: FormGroup;
@@ -87,7 +89,7 @@ export class ItemCreatePage {
    * back to the presenter.
    */
   done() {
-    this.items.add(this.item).then((resp) => {
+    this.items.add(this.form.value).then((resp) => {
       this.viewCtrl.dismiss(this.form.value);
     }, (err) => {
       let toast = this.toastCtrl.create({

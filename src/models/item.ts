@@ -20,11 +20,12 @@ export class Item {
 }
 
 export interface Item {
-  nome: string,
-  telefone: string,
-  endereco: string,
-  valorTotal: string,
-  valorQuitado: string,
-  descricao: string;
+  idItem: any,
+  nome: any,
+  telefone: any,
+  endereco: any,
+  valorTotal: any,
+  valorQuitado: any,
+  descricao: any;
   //[prop: string]: any;
 }
