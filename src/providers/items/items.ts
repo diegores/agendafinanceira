@@ -14,13 +14,17 @@ export class Items {
   }
 
   query(params?: any) {
-    return this.api.get('/items', params);
+    if (!params) {
+      return this.afd.list('items/');
+
+    }
+    //return this.afd.list('items/');
+    //return this.api.get('/items', params);
   }
 
   add(item: any) {
     //TODO: Pegar o último id e incrementar para passar a variável
-    var id: number = 1;
-    let seq = this.afd.database.ref("items/"+ "item "+id).set(item);
+    let seq = this.afd.database.ref("items/").push(item);
       seq.then(() => {
         this.presentToast("Cadastrado com Sucesso!");
       }, (err) => {

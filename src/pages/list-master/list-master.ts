@@ -3,6 +3,9 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
 import { Item } from '../../models/item';
 import { Items } from '../../providers/items/items';
+import { AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+
 
 @IonicPage()
 @Component({
@@ -10,10 +13,12 @@ import { Items } from '../../providers/items/items';
   templateUrl: 'list-master.html'
 })
 export class ListMasterPage {
-  currentItems: Item[];
+  listItens : Observable<any[]>;
 
   constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
-    //this.currentItems = this.items.query();
+    var listMaster : AngularFireList<any> = this.items.query();
+    this.listItens  =  listMaster.snapshotChanges();
+    console.log(this.listItens);
   }
 
   /**

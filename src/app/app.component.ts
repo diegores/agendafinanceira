@@ -8,6 +8,7 @@ import { LoginPage } from './../pages/login/login';
 
 import { FirstRunPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   template: `<ion-menu [content]="content">
@@ -47,15 +48,29 @@ export class MyApp {
     { title: 'Search', component: 'SearchPage' }
   ]
 
-  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, 
+    private statusBar: StatusBar, private splashScreen: SplashScreen, private afAuth: AngularFireAuth) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    const unsubscribe = afAuth.auth.onAuthStateChanged(user => {
+      if (!user) {
+        this.rootPage = 'LoginPage';
+        unsubscribe();
+      } else {
+        this.rootPage = 'ListMasterPage';
+        unsubscribe();
+      }
+    });
+
     this.initTranslate();
   }
+
+  
 
   initTranslate() {
     // Set the default language for translation strings, and the current language.

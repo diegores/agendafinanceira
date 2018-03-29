@@ -6,6 +6,7 @@ import { IonicPage, NavController, ViewController, ToastController } from 'ionic
 
 import { Item } from './../../models/item';
 import { Items } from '../../providers/items/items';
+import { ListMasterPage } from '../list-master/list-master';
 
 
 @IonicPage()
@@ -90,7 +91,9 @@ export class ItemCreatePage {
    */
   done() {
     this.items.add(this.form.value).then((resp) => {
-      this.viewCtrl.dismiss(this.form.value);
+      if (!this.form.valid) { return; }
+        this.viewCtrl.dismiss();
+      //this.navCtrl.push(ListMasterPage);
     }, (err) => {
       let toast = this.toastCtrl.create({
         message: "Erro ao inserir",
