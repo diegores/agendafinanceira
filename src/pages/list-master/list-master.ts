@@ -18,7 +18,6 @@ export class ListMasterPage {
   constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
     var listMaster : AngularFireList<any> = this.items.query();
     this.listItens  =  listMaster.snapshotChanges();
-    console.log(this.listItens);
   }
 
   /**

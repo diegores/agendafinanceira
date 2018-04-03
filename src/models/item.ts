@@ -20,12 +20,22 @@ export class Item {
 }
 
 export interface Item {
-  idItem: any,
-  nome: any,
+  /*idItem: any,
+  name: any,
   telefone: any,
   endereco: any,
   valorTotal: any,
   valorQuitado: any,
-  descricao: any;
+  descricao: any;*/
+
+
+  about: any,
+  address: any,
+  amount: any,
+  name: any,
+  profilePic: any,
+  telephone: any,
+  valueRemoved: any;
+  
   //[prop: string]: any;
 }
