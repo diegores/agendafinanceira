@@ -14,7 +14,6 @@ export class ItemDetailPage {
 
   constructor(public navCtrl: NavController, navParams: NavParams, items: Items) {
     this.item = navParams.get('item');
-    console.log(this.item);
   }
 
 }

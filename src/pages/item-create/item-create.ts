@@ -6,7 +6,7 @@ import { IonicPage, NavController, ViewController, ToastController } from 'ionic
 
 import { Item } from './../../models/item';
 import { Items } from '../../providers/items/items';
-import { ListMasterPage } from '../list-master/list-master';
+
 
 
 @IonicPage()

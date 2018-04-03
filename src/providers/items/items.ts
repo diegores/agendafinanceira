@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { Item } from '../../models/item';
-import { Api } from '../api/api';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ToastController } from 'ionic-angular';
@@ -9,7 +7,7 @@ import { ToastController } from 'ionic-angular';
 @Injectable()
 export class Items {
 
-  constructor(public api: Api, public afd: AngularFireDatabase, public toastCtrl: ToastController) { 
+  constructor(public afd: AngularFireDatabase, public toastCtrl: ToastController) { 
     
   }
 
@@ -24,7 +22,7 @@ export class Items {
 
   add(item: any) {
     //TODO: Pegar o último id e incrementar para passar a variável
-    let seq = this.afd.database.ref("items/").push(item);
+    let seq = this.afd.list("items/").push(item);
       seq.then(() => {
         this.presentToast("Cadastrado com Sucesso!");
       }, (err) => {
@@ -34,8 +32,14 @@ export class Items {
   return seq;
   }
 
-  delete(item: Item) {
-  }
+  delete(item: any) {
+     let seq = this.afd.list("items/").remove(item.key);
+     seq.then(() => {
+      this.presentToast("Item excluído com Sucesso!");
+    }, (err) => {
+      alert('Erro ao excluir um item');
+    });
+    }
 
   private presentToast(text) {
     let toast = this.toastCtrl.create({
