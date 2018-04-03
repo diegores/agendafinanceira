@@ -72,8 +72,8 @@ export class User {
   /**
    * Log the user out, which forgets the session
    */
-  logout() {
-    this._user = null;
+  logoutUser(): Promise<void>{
+    return this.afAuth.auth.signOut();
   }
 
   /**

@@ -1,3 +1,4 @@
+import { User } from './../../providers/user/user';
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
@@ -5,6 +6,7 @@ import { Item } from '../../models/item';
 import { Items } from '../../providers/items/items';
 import { AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { ToastController } from 'ionic-angular';
 
 
 @IonicPage()
@@ -15,7 +17,8 @@ import { Observable } from 'rxjs/Observable';
 export class ListMasterPage {
   listItens : Observable<any[]>;
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController, public user: User, 
+    public toastCtrl: ToastController) {
     var listMaster : AngularFireList<any> = this.items.query();
     this.listItens  =  listMaster.snapshotChanges();
   }
@@ -55,4 +58,22 @@ export class ListMasterPage {
       item: item
     });
   }
+
+   doLogout() {
+    try {
+      const result = this.user.logoutUser();
+      if (result) {
+        this.navCtrl.setRoot('LoginPage');
+      }
+    }
+    catch (e) {
+      let toast = this.toastCtrl.create({
+        message: e.message,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+    }
+  }
+
 }
