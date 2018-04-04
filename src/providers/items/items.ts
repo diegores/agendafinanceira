@@ -50,4 +50,15 @@ export class Items {
     toast.present();
   }
 
+  update(item: any){
+    let seq = this.afd.database.ref("items/").update(item);
+    seq.then(() => {
+      this.presentToast("Item alterado com Sucesso!");
+    }, (err) => {
+      alert('Erro ao alterar item');
+    });
+
+return seq;
+  }
+
 }
