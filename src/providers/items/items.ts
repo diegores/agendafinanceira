@@ -1,27 +1,29 @@
+import { Item } from './../../models/item';
 import { Injectable } from '@angular/core';
 
 
 import { AngularFireDatabase } from 'angularfire2/database';
-import { ToastController } from 'ionic-angular';
+import { ToastController, LoadingController } from 'ionic-angular';
 
 @Injectable()
 export class Items {
 
-  constructor(public afd: AngularFireDatabase, public toastCtrl: ToastController) { 
+  constructor(public afd: AngularFireDatabase, public toastCtrl: ToastController, public loadingCtrl: LoadingController) { 
     
   }
 
   query(params?: any) {
+    this.presentLoadingDefault();
     if (!params) {
       return this.afd.list('items/');
 
     }
-    //return this.afd.list('items/');
-    //return this.api.get('/items', params);
+    
   }
 
   add(item: any) {
     //TODO: Pegar o último id e incrementar para passar a variável
+    this.presentLoadingDefault();
     let seq = this.afd.list("items/").push(item);
       seq.then(() => {
         this.presentToast("Cadastrado com Sucesso!");
@@ -33,6 +35,7 @@ export class Items {
   }
 
   delete(item: any) {
+    this.presentLoadingDefault();
      let seq = this.afd.list("items/").remove(item.key);
      seq.then(() => {
       this.presentToast("Item excluído com Sucesso!");
@@ -40,6 +43,20 @@ export class Items {
       alert('Erro ao excluir um item');
     });
     }
+
+
+  update(item: any){
+    this.presentLoadingDefault();
+    let seq = this.afd.list("items/").update(item.key, {about: item.about, address: item.address, amount: item.amount, 
+      name: item.name, telephone: item.telephone, valueRemoved: item.valueRemoved, profilePic: item.profilePic });
+    seq.then(() => {
+      this.presentToast("Item alterado com Sucesso!");
+    }, (err) => {
+      alert('Erro ao alterar item');
+    });
+
+return seq;
+  }
 
   private presentToast(text) {
     let toast = this.toastCtrl.create({
@@ -50,15 +67,17 @@ export class Items {
     toast.present();
   }
 
-  update(item: any){
-    let seq = this.afd.database.ref("items/").update(item);
-    seq.then(() => {
-      this.presentToast("Item alterado com Sucesso!");
-    }, (err) => {
-      alert('Erro ao alterar item');
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
     });
-
-return seq;
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
   }
+  
 
 }

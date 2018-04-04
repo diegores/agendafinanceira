@@ -53,7 +53,7 @@ export class ListMasterPage {
   /**
    * Navigate to the detail page for this item.
    */
-  openItem(item: Item) {
+  openItem(item: any) {
     this.navCtrl.push('ItemDetailPage', {
       item: item
     });
