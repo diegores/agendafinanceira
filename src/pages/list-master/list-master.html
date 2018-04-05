@@ -26,7 +26,7 @@
           <img [src]="item.payload.val().profilePic" />
         </ion-avatar>
         <h2>{{item.payload.val().name}}</h2>
-        <p>{{item.payload.val().about}}</p>
+        <p>{{item.payload.val().about - item.payload.val().valueRemoved}},00</p>
         <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
       </button>
 

@@ -18,8 +18,7 @@ export class ItemDetailPage {
   item: Item;
 
   isReadyToSave: boolean;
-    
-  
+
     form: FormGroup;
 
     constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, 
@@ -36,6 +35,7 @@ export class ItemDetailPage {
       about: [''],
       key: ['']
     });
+    
 
     // Watch the form for changes, and
     this.form.valueChanges.subscribe((v) => {

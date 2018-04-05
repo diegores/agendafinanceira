@@ -47,8 +47,14 @@ export class Items {
 
   update(item: any){
     this.presentLoadingDefault();
-    let seq = this.afd.list("items/").update(item.key, {about: item.about, address: item.address, amount: item.amount, 
-      name: item.name, telephone: item.telephone, valueRemoved: item.valueRemoved, profilePic: item.profilePic });
+    let seq;
+    if(item.profilePic != "" || item.profilePic != null){
+      seq = this.afd.list("items/").update(item.key, {about: item.about, address: item.address, amount: item.amount, 
+        name: item.name, telephone: item.telephone, valueRemoved: item.valueRemoved, profilePic: item.profilePic });
+    }else{
+      seq = this.afd.list("items/").update(item.key, {about: item.about, address: item.address, amount: item.amount, 
+        name: item.name, telephone: item.telephone, valueRemoved: item.valueRemoved });
+    }
     seq.then(() => {
       this.presentToast("Item alterado com Sucesso!");
     }, (err) => {

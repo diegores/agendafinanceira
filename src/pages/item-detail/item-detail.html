@@ -28,7 +28,7 @@
         <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)"  />
         <div class="profile-image-wrapper" (click)="getPicture()">
           <div class="profile-image-placeholder" *ngIf="!this.form.controls.profilePic.value">
-            <ion-icon name="add" ></ion-icon>
+              <img [src]="item.payload.val().profilePic" />
             <div>
               {{ 'ITEM_CREATE_CHOOSE_IMAGE' | translate }}
             </div>
@@ -46,17 +46,22 @@
             <ion-input type="text" placeholder="{{ 'ITEM_ADDRESS_PLACEHOLDER' | translate }}" ngModel="{{item.payload.val().address}}" formControlName="address" ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="number" placeholder="{{ 'ITEM_AMOUNT_PLACEHOLDER' | translate }}"ngModel="{{item.payload.val().amount}}"  formControlName="amount" ></ion-input>
+            <ion-input type="number" [value]="item.payload.val().amount"  placeholder="{{ 'ITEM_AMOUNT_PLACEHOLDER' | translate }}" [(ngModel)]="amount"  formControlName="amount" ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="number" placeholder="{{ 'ITEM_VALUE_REMOVED_PLACEHOLDER' | translate }}" ngModel="{{item.payload.val().valueRemoved}}" formControlName="valueRemoved" ></ion-input>
+            <ion-input type="number" [value]="item.payload.val().valueRemoved" placeholder="{{ 'ITEM_VALUE_REMOVED_PLACEHOLDER' | translate }}" [(ngModel)]="valueRemoved" formControlName="valueRemoved" ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-textarea placeholder="{{ 'ITEM_ABOUT_PLACEHOLDER' | translate }}"ngModel="{{item.payload.val().about}}"  formControlName="about"></ion-textarea>
+            <ion-textarea placeholder="{{ 'ITEM_ABOUT_PLACEHOLDER' | translate }}" ngModel="{{item.payload.val().about}}"  formControlName="about"></ion-textarea>
           </ion-item>
           <ion-item>
               <ion-input type="hidden"  ngModel="{{item.key}}" formControlName="key" ></ion-input>
-            </ion-item>
+          </ion-item>
+          <ion-item>
+            <p>
+              <b>R$ {{amount - valueRemoved}}</b>
+            </p>
+          </ion-item>
         </ion-list>
       </form>
     </ion-content>
