@@ -19,6 +19,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FIREBASE_CREDENTIALS } from '../db/persistence';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AppMaskerModule } from 'brmasker-ionic';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
